@@ -1,4 +1,4 @@
-# CPW219-CRUD-Troubleshooting
+# Winter2023-CPW219-DebuggingCRUD
 An ASP.NET MVC Core website with a database that need fixing
 
 ## Requirements
