@@ -1,11 +1,23 @@
-﻿namespace CPW219_CRUD_Troubleshooting.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace CPW219_CRUD_Troubleshooting.Models
 {
     public static class StudentDb
     {
-        public static Student Add(Student p, SchoolContext db)
+        /// <summary>
+        /// Adds the given student to the database
+        /// </summary>
+        /// <param name="p">The student being added to the database</param>
+        /// <param name="db">The database context to be used</param>
+        /// <returns>The student being added to the database</returns>
+        public static async Task<Student> Add(Student p, SchoolContext db)
         {
-            //Add student to context
+            // Prepare INSERT Statement
             db.Students.Add(p);
+
+            // Execute query asynchronously
+            await db.SaveChangesAsync();
+
             return p;
         }
 
