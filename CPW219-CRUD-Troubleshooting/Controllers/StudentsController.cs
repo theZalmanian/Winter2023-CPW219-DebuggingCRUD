@@ -91,6 +91,9 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             // Delete the given student
             StudentDb.Delete(context, studentToDelete);
 
+            // Prepare success message
+            TempData["Message"] = $"{studentToDelete.Name} was deleted successfully";
+
             // Send the user back to the Roster
             return RedirectToAction("Index");
         }
