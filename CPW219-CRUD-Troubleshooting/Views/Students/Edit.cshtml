@@ -1,10 +1,10 @@
 ﻿@model Student
 
 @{
-    ViewData["Title"] = "Create Student";
+    ViewData["Title"] = "Update Student";
 }
 
-<!--If Student was created successfully-->
+<!--If Student was updated successfully-->
 @if (ViewData["Message"] != null)
 {
     <div class="alert alert-success">
@@ -12,12 +12,13 @@
     </div>
 }
 
-<h1>Create Student</h1>
+<h1>Update Student</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentId" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -29,7 +30,7 @@
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

@@ -15,10 +15,10 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
         public async Task<IActionResult> Index()
         {
             // Get all Students from the db
-            List<Student> products = await StudentDb.GetStudents(context);
+            List<Student> allStudents = await StudentDb.GetStudents(context);
 
             // Display them on the page
-            return View(products);
+            return View(allStudents);
         }
 
         public IActionResult Create()
@@ -38,30 +38,39 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
                 ViewData["Message"] = $"{currStudent.Name} was added!";
             }
 
-            //Show web page with errors
+            // Show web page with errors
             return View(currStudent);
         }
 
         public IActionResult Edit(int id)
         {
-            //get the product by id
-            Student p = StudentDb.GetStudent(context, id);
+            // Get the Student by their id
+            Student currStudent = StudentDb.GetStudent(context, id);
 
-            //show it on web page
-            return View();
+            // If the Student was not found, display error
+            if (currStudent == null)
+            {
+                return NotFound();
+            }
+
+            // Display their info on the page
+            return View(currStudent);
         }
 
         [HttpPost]
-        public IActionResult Edit(Student p)
+        public IActionResult Edit(Student currStudent)
         {
             if (ModelState.IsValid)
             {
-                StudentDb.Update(context, p);
+                // Update the given student
+                StudentDb.Update(context, currStudent);
+
+                // Display success message
                 ViewData["Message"] = "Product Updated!";
-                return View(p);
             }
-            //return view with errors
-            return View(p);
+
+            // Show view with errors
+            return View(currStudent);
         }
 
         public IActionResult Delete(int id)
