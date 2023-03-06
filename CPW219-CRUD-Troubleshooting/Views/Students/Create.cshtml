@@ -4,8 +4,15 @@
     ViewData["Title"] = "Create Student";
 }
 
-<h1>Create Student</h1>
+<!--If Student was created successfully-->
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success">
+        <h3 class="display-7">@ViewData["Message"]</h3>
+    </div>
+}
 
+<h1>Create Student</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
