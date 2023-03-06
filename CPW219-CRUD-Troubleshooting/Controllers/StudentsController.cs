@@ -12,10 +12,13 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             context = dbContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Student> products = StudentDb.GetStudents(context);
-            return View();
+            // Get all Students from the db
+            List<Student> products = await StudentDb.GetStudents(context);
+
+            // Display them on the page
+            return View(products);
         }
 
         public IActionResult Create()
