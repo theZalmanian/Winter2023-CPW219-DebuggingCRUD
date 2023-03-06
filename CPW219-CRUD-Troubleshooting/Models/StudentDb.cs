@@ -65,10 +65,10 @@ namespace CPW219_CRUD_Troubleshooting.Models
 
         public static void Delete(SchoolContext context, Student p)
         {
-            //Mark the object as deleted
+            // Prepare the DELETE Statement
             context.Students.Remove(p);
 
-            //Send delete query to database
+            // Execute query
             context.SaveChanges();
         }
     }
