@@ -21,10 +21,14 @@ namespace CPW219_CRUD_Troubleshooting.Models
             return p;
         }
 
-        public static List<Student> GetStudents(SchoolContext context)
+        /// <summary>
+        /// Gets all Students present in the database and returns them in a list
+        /// </summary>
+        /// <param name="context">The database context being used</param>
+        /// <returns>A list containing all students present in the db</returns>
+        public static async Task<List<Student>> GetStudents(SchoolContext context)
         {
-            return (from s in context.Students
-                    select s).ToList();
+            return await context.Students.ToListAsync();
         }
 
         public static Student GetStudent(SchoolContext context, int id)
