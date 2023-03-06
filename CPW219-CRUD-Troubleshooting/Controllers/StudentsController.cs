@@ -75,18 +75,23 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
 
         public IActionResult Delete(int id)
         {
-            Student p = StudentDb.GetStudent(context, id);
-            return View(p);
+            // Get the Student by their id
+            Student currStudent = StudentDb.GetStudent(context, id);
+
+            // Display their info on the page
+            return View(currStudent);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
-            //Get Product from database
-            Student p = StudentDb.GetStudent(context, id);
+            // Get Student from database
+            Student studentToDelete = StudentDb.GetStudent(context, id);
 
-            StudentDb.Delete(context, p);
+            // Delete the given student
+            StudentDb.Delete(context, studentToDelete);
 
+            // Send the user back to the Roster
             return RedirectToAction("Index");
         }
     }
